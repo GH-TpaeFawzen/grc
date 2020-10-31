@@ -17,21 +17,21 @@
 # then we assume they're filenames, and cat them each in turn.
 #---------------------------------------------------------------------------
 if [ -t 1 ]; then
-	if [ $# -eq 0 ]; then
+	case $# in (0)
 		grcat conf.mail | less -r
-	else
+	;;(*)
 		for _arg in $*
 		do
 			grcat conf.mail < $_arg | less -r
 		done
-	fi
+	;;esac
 else
-	if [ $# -eq 0 ]; then
+	case $# in (0)
 		cat
-	else
+	;;(*)
 		for _arg in $*
 		do
 			cat $_arg
 		done
-	fi
+	;;esac
 fi
